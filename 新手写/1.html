@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script src="./browser.min.js"></script>
+
+
+    <script>
+
+        
+        // Function.prototype.mycall = function(context) {
+        //     var context = context || window
+        //     // var argus = Array.prototype.slice.call(arguments, 1)
+        //     // var kk = argus.join(',')
+        //     // console.log(kk)
+
+
+
+        //     var args = [];
+        //     for(var i = 1, len = arguments.length; i < len; i++) {
+        //         args.push('arguments[' + i + ']');
+        //     }
+        //     console.log(Object.prototype.toString.call(args))
+        //     context.fn = this
+        //     var result = eval('context.fn(' + args + ')')
+        //     delete context.fn
+        //     return result
+        // }
+
+        var name = '全局的名字'
+        function gouzao(name) {
+            console.log(this)
+            // this.name = name
+            console.log(this.name, name)
+        }
+
+        // gouzao.mycall(null, '第一个参数', '第二个参数')
+
+
+        // Function.prototype.myApply = function(obj) {
+        //     var context = obj || window
+        //     var argus = Array.prototype.slice.call(arguments, 1)
+        //     context.fn = this
+        //     var result = context.fn(...argus)
+        //     delete context.fn
+        //     return result
+        // }   
+
+        // gouzao.myApply(null, ['第一个参数', '第二个参数'])
+
+
+            // Function.prototype.myBind = function(obj) {
+            //     var context = obj || window
+            //     var argus = Array.prototype.slice.call(arguments, 1)
+            //     var that = this
+
+            //     return function() {
+            //         console.log(...arguments)
+            //         console.log(...argus)
+            //         context.fn = that
+            //         context.fn.call(that, [...argus, ...arguments])
+            //     }
+            // }
+
+            // var t = gouzao.myBind(null, '第一个参数', '第二个参数')
+            // t('3')
+
+
+            function myNew(fn) {
+                var obj =  {}
+                obj.__proto__ = fn.prototype
+                fn.call(obj, [].slice.call(arguments, 1))
+                return obj
+            }
+
+            var k = myNew(gouzao, 'jake')
+
+            console.log(k)
+
+
+
+
+         
+    </script>
+</body>
+</html>

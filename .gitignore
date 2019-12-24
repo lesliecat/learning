@@ -1,0 +1,15 @@
+dist/
+node_modules/
+.jsbuild/
+.happypack/
+.cache-loader/
+.vscode/
+package-lock.json
+prd/
+version.h
+.prettierrc
+.idea/
+.history/
+yarn.lock
+yarn-error.log
+.DS_Store

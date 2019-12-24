@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        img {
+            display: block;
+            height: 300px;
+        }
+    </style>
+</head>
+<body>
+    <div style="height:3000px">
+        <img src="http://img.cmvideo.cn:8080/publish/noms/2019/07/18/1O19F3U1LU99I.jpg" data-t1="http://img.cmvideo.cn:8080/publish/noms/2019/07/18/1O19F3U1LU99I.jpg" alt="">
+        <img src="" data-t2="http://img.cmvideo.cn:8080/publish/noms/2019/07/18/1O19F3U1LU99I.jpg" alt="">
+        <img src="" data-t3="http://img.cmvideo.cn:8080/publish/noms/2019/07/18/1O19F3U1LU99I.jpg" alt="">
+        <img src="" data-t4="http://img.cmvideo.cn:8080/publish/noms/2019/07/18/1O19F3U1LU99I.jpg" alt="">
+        <img src="" data-t5="http://img.cmvideo.cn:8080/publish/noms/2019/07/18/1O19F3U1LU99I.jpg" alt="">
+        <img src="" data-t6="http://img.cmvideo.cn:8080/publish/noms/2019/07/18/1O19F3U1LU99I.jpg" alt="">
+        <img src="" data-t7="http://img.cmvideo.cn:8080/publish/noms/2019/07/18/1O19F3U1LU99I.jpg" alt="">
+        <img src="" data-t8="http://img.cmvideo.cn:8080/publish/noms/2019/07/18/1O19F3U1LU99I.jpg" alt="">
+        <img src="" data-t9="http://img.cmvideo.cn:8080/publish/noms/2019/07/18/1O19F3U1LU99I.jpg" alt="">
+        <img src="" data-t10="http://img.cmvideo.cn:8080/publish/noms/2019/07/18/1O19F3U1LU99I.jpg" alt="">
+        <img src="" data-t11="http://img.cmvideo.cn:8080/publish/noms/2019/07/18/1O19F3U1LU99I.jpg" alt="">
+        <img src="" data-t12="http://img.cmvideo.cn:8080/publish/noms/2019/07/18/1O19F3U1LU99I.jpg" alt="">
+        <img src="" data-t13="http://img.cmvideo.cn:8080/publish/noms/2019/07/18/1O19F3U1LU99I.jpg" alt="">
+        <img src="" data-t14="http://img.cmvideo.cn:8080/publish/noms/2019/07/18/1O19F3U1LU99I.jpg" alt="">
+        <img src="" data-t15="http://img.cmvideo.cn:8080/publish/noms/2019/07/18/1O19F3U1LU99I.jpg" alt="">
+        <img src="" data-t16="http://img.cmvideo.cn:8080/publish/noms/2019/07/18/1O19F3U1LU99I.jpg" alt="">
+        <img src="" data-t17="http://img.cmvideo.cn:8080/publish/noms/2019/07/18/1O19F3U1LU99I.jpg" alt="">
+        <img src="" data-t18="http://img.cmvideo.cn:8080/publish/noms/2019/07/18/1O19F3U1LU99I.jpg" alt="">
+        <img src="" data-t19="http://img.cmvideo.cn:8080/publish/noms/2019/07/18/1O19F3U1LU99I.jpg" alt="">
+    </div>
+    
+
+    <script>
+        var imgs = document.querySelectorAll('img')
+        var div1 = document.querySelector('div')
+
+        var dom =  document.documentElement ||  document.body 
+        var h = window.innerHeight 
+        console.log(window.innerHeight)
+
+        
+
+        window.addEventListener('scroll', function() {
+            var scrTop = dom.scrollTop
+            // console.log(scrTop + '-----------------------scrolltop')
+
+
+            imgs.forEach(function(item,i) {
+                if(item.offsetTop -300  < h+scrTop) {
+                    item.src = item.getAttribute('data-t'+ (i+1) )
+                    // console.log(item.getAttribute('data-t'+ (i+1) ))
+                }
+                console.log(item.offsetTop + '------------------------------------------item'+i  ,h+scrTop)
+            })
+
+            // // console.log(pageYOffset)
+        })
+    
+    
+    
+    </script>
+</body>
+</html>

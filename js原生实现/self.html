@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script src="./browser.min.js"></script>
+	<script>
+    // //实现call 
+	// var name = 'baby'
+
+	// var t = {
+	// 	name: 'jake'
+	// }
+
+	// function tellName() {
+	// 	console.log(this.name)
+	// 	return 2
+	// }
+
+	// Function.prototype.selfcall = function(context) {
+
+	// 	var context = context || window
+	// 	var arg = Array.prototype.slice.call(arguments, 1)
+	// 	context.fn = this
+	// 	var rusult = context.fn
+	// 	delete context.fn
+
+	// 	return rusult()
+
+ 	// }
+
+ 	// // tellName()
+
+	// tellName.selfcall(t)
+
+
+	// var pp = tellName.call(t)
+	// console.log(pp)
+
+	// var pp1 = tellName.selfcall(t)
+    // console.log(pp1)
+    
+
+    // 实现apply
+
+    // Function.prototype.selfapply(obj) = function(){
+    //     //this是调用selfapply的函数
+    //     var context = obj || window
+    //     var argu = arguments.slice(1)
+
+    //     context.fn = this
+    //     var result = context.fn()
+    //     delete context.fn
+    //     return result
+    // }
+
+    // var name = 'juce'
+    // var t = {
+    //     name: 'jake'
+    // }
+
+    // function pp(a) {
+    //     console.log(this.name)
+    //     console.log(a)
+    // }
+
+    // pp.selfapply('t', ['1'])
+
+
+    // 实现bind函数
+
+    // Function.prototype.selfbind = function(obj) {
+        
+    //     var context = obj || window
+
+    //     fn = this;
+
+    //     var kk = Array.prototype.slice.call(arguments, 1)
+    //     console.log(kk)
+    //     console.log( ...Array.from(Array.prototype.slice.call(arguments, 1)));
+
+
+    //     return function() {
+    //         var t  = kk
+    //         console.log( kk);
+    //         return fn.call( context, ...Array.from(kk))
+    //     }
+    // }
+
+
+    // var name = 'juce'
+    // var t = {
+    //     name: 'jake'
+    // }
+
+
+    // function sub(a) {
+    //     console.log(this.name)
+    //     console.log(a)
+    // }
+
+    // var sky = sub.selfbind(t, 'a')
+    // sky()
+    // // console.log(sky())
+
+
+    // 实现Object.create
+
+    // Object.prototype.mycreate = function(proto, obj) {
+    //     function F() {
+
+    //     }
+
+    //     F.prototype = proto
+
+    //     return new F()
+
+
+
+    // }
+
+    // var proto = {
+    //     name: '原型'
+    // }
+
+    // var k = Object.mycreate (proto, {age: '18'})
+    // console.log(k)
+
+
+//     function deepClone(obj){
+//         let objClone = Array.isArray(obj)?[]:{};
+//         if(obj && typeof obj==="object"){
+//             for(key in obj){
+//                 if(obj.hasOwnProperty(key)){
+//                     //判断ojb子元素是否为对象，如果是，递归复制
+//                     if(obj[key]&&typeof obj[key] ==="object"){
+//                         objClone[key] = deepClone(obj[key]);
+//                     }else{
+//                         //如果不是，简单复制
+//                         objClone[key] = obj[key];
+//                     }
+//                 }
+//             }
+//         }
+//     return objClone;
+// }    
+// let a=[1,2,3,4],
+//     b=deepClone(a);
+// a[0]=2;
+// console.log(a,b);
+
+
+
+    function deepClone(obj,b) {
+        let objClone = Array.isArray(obj) ? [] : {}
+
+            for(var key in obj) {
+                if (obj.hasOwnProperty(key)){
+                    if(typeof obj[key] == 'object') {
+                        objClone[key] = deepClone(obj[key])   
+                    }else{
+                        objClone[key] = obj[key]
+                    }
+                }
+              
+            }
+
+        return objClone
+    }
+
+    var obj = {
+        a: {
+            name: 'jake',
+            age: '17',
+            children: {
+                a: '1',
+                n: '2'
+            }
+        },
+        b: [1,2,3,4],
+        c: '4'
+    }
+    var newO = deepClone(obj)
+    console.log(newO)
+
+    newO.a.children = 3 
+    console.log(obj)
+
+
+    function Person(name) {
+        this.name = name
+    }
+ 
+   
+
+
+
+    function myNew(fn) {
+        return function() {
+            var obj = Object.create(fn.prototype, {})
+            fn.apply(obj, arguments)
+            return obj
+        }
+    }
+
+    var p1  = myNew(Person)('jake')
+
+    console.log(p1)
+
+
+    var a = [1,11,3,5,{name:'jake'},1,11, 5]
+
+
+    var newarr = a.filter((item,i, arr) => {
+        return arr.indexOf(item) == i
+    })
+
+    console.log(newarr)
+
+// ***********************
+    let obj11 = {}
+    var t 
+    for(t=0;t<a.length;t++) {
+        if(obj11[a[t]]) {
+            continue
+        } else {
+            obj11[a[t]] = a[t]
+        }
+    }
+    let obj22 = []
+    for([key, value] of Object.entries(obj11)) {
+        obj22.push(value) 
+    }
+
+    console.log(obj22)
+
+
+    var k = [...new Set(a)]
+    console.log(k)
+
+    
+            let arr9 =  a.reduce((prev, item, i , arr)=> {
+                if(prev.indexOf(item) < 0) {
+                    prev.push(item)
+                }
+                
+                return prev
+            },[]) 
+
+    console.log(arr9)
+
+
+
+
+    let onWatch = (obj, setBind, getLogger) => {
+        let handler = {
+            get(target, property, receiver) {
+                getLogger(target, property)
+                return Reflect.get(target, property, receiver)
+            },
+            set(target, property, value, receiver) {
+                setBind(value, property)
+                return Reflect.set(target, property, value)
+            }
+        }
+        return new Proxy(obj, handler)
+    }
+
+    let obj = { a: 1 }
+    let p = onWatch(
+        obj,
+        (v, property) => {
+            console.log(`监听到属性${property}改变为${v}`)
+        },
+        (target, property) => {
+            console.log(`'${property}' = ${target[property]}`)
+        }
+    )
+    p.a = 2 // 监听到属性a改变
+    p.a // 'a' = 2
+
+
+
+
+
+	</script>
+	
+</body>
+</html>
